@@ -34,7 +34,7 @@ class HttpRequest {
       Response response = await Dio().post(url,
           data: data,
           options: Options(headers: {'authorization': 'Bearer $accessToken'}));
-      return response;
+      return response.toString();
     } catch (error) {
       print(error);
     }
@@ -45,7 +45,7 @@ class HttpRequest {
       Response response = await Dio().post(url,
           data: data,
           options: Options(headers: {'authorization': 'Bearer $accessToken'}));
-      return response;
+      return response.toString();
     } catch (error) {
       print(error);
     }

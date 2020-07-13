@@ -2,6 +2,7 @@
 import './HttpRequest.dart';
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import './Person.dart';
 // class Rect {
 //   num height;
 //   num width;
@@ -275,24 +276,6 @@ Dart的接口
 // T getData<T>(T value) {
 //   return value;
 // }
-void getHttp() async {
-  try {
-    Response response = await Dio().post(
-        "https://admin.shafayouxi.org/admin/compensation/",
-        data: {
-          "user_id": "c892cc30-d904-4326-97a7-50d5f33bf091",
-          "currency": "coin",
-          "amount": 100,
-          "reason": "理赔"
-        },
-        options: Options(headers: {
-          'authorization': 'Bearer KLsdolTHOjjqDQBw5YcySxzOBuq8aZCa'
-        }));
-    print(response);
-  } catch (e) {
-    print(e);
-  }
-}
 
 main() async {
   // var uri = 'http://www.baidu.com/';
@@ -306,6 +289,7 @@ main() async {
   // headers: {'authorization': 'Bearer KLsdolTHOjjqDQBw5YcySxzOBuq8aZCa'},
   //     body: json.encode(body));
   // print(response);
+
   var url = "https://admin.shafayouxi.org/admin/compensation/";
   var data = {
     "user_id": "c892cc30-d904-4326-97a7-50d5f33bf091",
@@ -313,7 +297,13 @@ main() async {
     "amount": 100,
     "reason": "理赔"
   };
-  var accessToken = 'KLsdolTHOjjqDQBw5YcySxzOBuq8aZCa';
+  var accessToken = 'v586i62XXWRz1AUGBUBfj5fk3g0VUoeW';
 
-  HttpRequest.postRequest(url, data, accessToken);
+  var result = await HttpRequest.postRequest(url, data, accessToken);
+  // 比较关键
+  print(result.runtimeType);
+  Map da = json.decode(result);
+  var user = new Person.fromJson(da);
+  print('${user.id}');
+  // print('${result.name}');
 }
