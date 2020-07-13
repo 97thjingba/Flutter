@@ -1,4 +1,6 @@
 // import './Person.dart';
+import 'package:flutter/material.dart';
+
 import './HttpRequest.dart';
 import 'dart:convert';
 import 'package:dio/dio.dart';
@@ -277,33 +279,11 @@ Dart的接口
 //   return value;
 // }
 
-main() async {
-  // var uri = 'http://www.baidu.com/';
-  // Map body = {
-  //   "user_id": "c892cc30-d904-4326-97a7-50d5f33bf091",
-  //   "currency": "coin",
-  //   "amount": 100,
-  //   "reason": "理赔"
-  // };
-  // var response = await http.post(uri,
-  // headers: {'authorization': 'Bearer KLsdolTHOjjqDQBw5YcySxzOBuq8aZCa'},
-  //     body: json.encode(body));
-  // print(response);
-
-  var url = "https://admin.shafayouxi.org/admin/compensation/";
-  var data = {
-    "user_id": "c892cc30-d904-4326-97a7-50d5f33bf091",
-    "currency": "coin",
-    "amount": 100,
-    "reason": "理赔"
-  };
-  var accessToken = 'v586i62XXWRz1AUGBUBfj5fk3g0VUoeW';
-
-  var result = await HttpRequest.postRequest(url, data, accessToken);
-  // 比较关键
-  print(result.runtimeType);
-  Map da = json.decode(result);
-  var user = new Person.fromJson(da);
-  print('${user.id}');
-  // print('${result.name}');
+void main() {
+  runApp(new Center(
+    child: new Text(
+      'hello, world!',
+      textDirection: TextDirection.ltr,
+    ),
+  ));
 }
