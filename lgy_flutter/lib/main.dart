@@ -1,10 +1,6 @@
 // import './Person.dart';
 import 'package:flutter/material.dart';
 
-import './HttpRequest.dart';
-import 'dart:convert';
-import 'package:dio/dio.dart';
-import './Person.dart';
 // class Rect {
 //   num height;
 //   num width;
@@ -279,11 +275,361 @@ Dart的接口
 //   return value;
 // }
 
+// class MyAppBar extends StatelessWidget {
+//   MyAppBar({this.title});
+
+//   // Widget子类中的字段往往都会定义为"final"
+
+//   final Widget title;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return new Container(
+//       height: 56.0, // 单位是逻辑上的像素（并非真实的像素，类似于浏览器中的像素）
+//       padding: const EdgeInsets.symmetric(horizontal: 8.0),
+//       decoration: new BoxDecoration(color: Colors.blue[500]),
+//       // Row 是水平方向的线性布局（linear layout）
+//       child: new Row(
+//         //列表项的类型是 <Widget>
+//         children: <Widget>[
+//           new IconButton(
+//             icon: new Icon(Icons.menu),
+//             tooltip: 'Navigation menu',
+//             onPressed: null, // null 会禁用 button
+//           ),
+//           // Expanded expands its child to fill the available space.
+//           new Expanded(
+//             child: title,
+//           ),
+//           new IconButton(
+//             icon: new Icon(Icons.search),
+//             tooltip: 'Search',
+//             onPressed: null,
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// class MyScaffold extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     // Material 是UI呈现的“一张纸”
+//     return new Material(
+//       // Column is 垂直方向的线性布局.
+//       child: new Column(
+//         children: <Widget>[
+//           new MyAppBar(
+//             title: new Text(
+//               'Example title',
+//               style: Theme.of(context).primaryTextTheme.title,
+//             ),
+//           ),
+//           new Expanded(
+//             child: new Center(
+//               child: new Text('Hell444o, world!'),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// class TutorialHome extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     //Scaffold是Material中主要的布局组件.
+//     return new Scaffold(
+//       appBar: new AppBar(
+//         leading: new IconButton(
+//           icon: new Icon(Icons.menu),
+//           tooltip: 'Navigation menu',
+//           onPressed: null,
+//         ),
+//         title: new Text('Example title'),
+//         actions: <Widget>[
+//           new IconButton(
+//             icon: new Icon(Icons.search),
+//             tooltip: 'Search',
+//             onPressed: null,
+//           ),
+//         ],
+//       ),
+//       //body占屏幕的大部分
+//       body: new Center(
+//         child: new Text('Hello, world!'),
+//       ),
+//       floatingActionButton: new FloatingActionButton(
+//         tooltip: 'Add', // used by assistive technologies
+//         child: new Icon(Icons.add),
+//         onPressed: null,
+//       ),
+//     );
+//   }
+// }
+
+// class MyButton extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return new GestureDetector(
+//       onTap: () {
+//         print('MyButton was tapped!');
+//       },
+//       child: new Container(
+//         height: 36.0,
+//         padding: const EdgeInsets.all(8.0),
+//         margin: const EdgeInsets.symmetric(horizontal: 8.0),
+//         decoration: new BoxDecoration(
+//           borderRadius: new BorderRadius.circular(5.0),
+//           color: Colors.lightGreen[500],
+//         ),
+//         child: new Center(
+//           child: new Text('Engage'),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// class Counter extends StatefulWidget {
+//   @override
+//   _CounterState createState() => new _CounterState();
+// }
+
+// class _CounterState extends State<Counter> {
+//   int _counter = 0;
+
+//   void _increment() {
+//     setState(() {
+//       _counter++;
+//     });
+//   }
+//   @override
+//   Widget build(BuildContext context) {
+//     return new Row(
+//       children: <Widget>[
+//         new RaisedButton(
+//           onPressed: _increment,
+//           child: new Text('Increment'),
+//         ),
+//         new Text('Count: $_counter'),
+//       ],
+//     );
+//   }
+// }
+
+// 热重载不会重载直接写在main函数里的样式
+
+// class ShoppingListItem extends StatelessWidget {
+//   ShoppingListItem({Product product, this.inCart, this.onCartChanged})
+//       : product = product,
+//         super(key: new ObjectKey(product));
+
+//   final Product product;
+//   final bool inCart;
+//   final CartChangedCallback onCartChanged;
+
+//   Color _getColor(BuildContext context) {
+//     return inCart ? Colors.black54 : Theme.of(context).primaryColor;
+//   }
+
+//   TextStyle _getTextStyle(BuildContext context) {
+//     if (!inCart) return null;
+
+//     return new TextStyle(
+//       color: Colors.black54,
+//       decoration: TextDecoration.lineThrough,
+//     );
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return new ListTile(
+//       onTap: () {
+//         onCartChanged(product, !inCart);
+//       },
+//       leading: new CircleAvatar(
+//         backgroundColor: _getColor(context),
+//         child: new Text(product.name[0]),
+//       ),
+//       title: new Text(product.name, style: _getTextStyle(context)),
+//     );
+//   }
+// }
+
+// class ShoppingList extends StatefulWidget {
+//   ShoppingList({Key key, this.products}) : super(key: key);
+//   final List<Product> products;
+//   @override
+//   _ShoppingListState createState() => new _ShoppingListState();
+// }
+
+// // 通常命名State子类时带一个下划线，这表示其是私有的。
+// // 当ShoppingList父级重建时，父级将创建一个新的ShoppingList实例，但是Flutter框架
+// // 将重用已经在树中的_shoppingListState 实例，而不是再次调用createState创建一个新的。
+// //
+// class _ShoppingListState extends State<ShoppingList> {
+//   Set<Product> _shoppingCart = new Set<Product>();
+
+//   void _handleCartChanged(Product product, bool inCart) {
+//     setState(() {
+//       if (inCart)
+//         _shoppingCart.add(product);
+//       else
+//         _shoppingCart.remove(product);
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return new Scaffold(
+//       appBar: new AppBar(
+//         title: new Text('Shopping List'),
+//       ),
+//       body: new ListView(
+//         padding: new EdgeInsets.symmetric(vertical: 8.0),
+//         // 在这里访问父级的属性.使用widget来访问
+//         children: widget.products.map((Product product) {
+//           return new ShoppingListItem(
+//             product: product,
+//             inCart: _shoppingCart.contains(product),
+//             onCartChanged: _handleCartChanged,
+//           );
+//         }).toList(),
+//       ),
+//     );
+//   }
+// }
+
+// class Product {
+//   const Product({this.name});
+//   final String name;
+// }
+
+// typedef void CartChangedCallback(Product product, bool inCart);
+
+// void main() {
+//   runApp(new MaterialApp(
+//     title: 'Shopping App',
+//     home: new ShoppingList(
+//       products: <Product>[
+//         new Product(name: 'Eggs'),
+//         new Product(name: 'Flour'),
+//         new Product(name: 'Chocolate chips'),
+//       ],
+//     ),
+//   ));
+// }
+
+import 'package:flutter/material.dart';
+// Uncomment lines 7 and 10 to view the visual layout at runtime.
+// import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
+
 void main() {
-  runApp(new Center(
-    child: new Text(
-      'hello, world!',
-      textDirection: TextDirection.ltr,
-    ),
-  ));
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Widget titleSection = Container(
+      padding: const EdgeInsets.all(36),
+      margin: const EdgeInsets.only(bottom: 36),
+      child: Row(
+        children: [
+          Expanded(
+            /*1*/
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /*2*/
+                Container(
+                  child: Text(
+                    '欢迎登陆来玩',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25.0,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          /*3*/
+          Container(
+              child: Image.asset(
+            'images/img_password.png',
+            width: 60,
+            height: 57,
+          ))
+        ],
+      ),
+    );
+
+    Color color = Theme.of(context).primaryColor;
+
+    Widget inputSection = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        children: [
+          Container(
+              margin: const EdgeInsets.only(right: 10),
+              width: 70,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('中国大陆'),
+                  TextField(
+                    keyboardType: TextInputType.number,
+                  ),
+                ],
+              )),
+          Expanded(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('请输入手机号'),
+              TextField(
+                autofocus: true,
+                keyboardType: TextInputType.number,
+              ),
+            ],
+          ))
+        ],
+      ),
+    );
+
+    Widget buttonSection = Container(
+      padding: const EdgeInsets.all(32),
+      child: Image.asset(
+        'images/btn_sign_in.png',
+        width: 322,
+        height: 57,
+      ),
+    );
+
+    return MaterialApp(
+      title: 'Flutter layout demo',
+      home: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.pink,
+            title: Text('LaiWan LogIn'),
+          ),
+          body: Container(
+            width: 600,
+            height: 1000,
+            child: Column(
+              children: [
+                titleSection,
+                inputSection,
+                buttonSection,
+              ],
+            ),
+          )),
+    );
+  }
 }

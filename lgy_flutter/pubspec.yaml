@@ -34,3 +34,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - images/lake.jpg
+    - images/btn_sign_in.png
+    - images/img_password.png
