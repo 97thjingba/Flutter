@@ -528,35 +528,70 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
 
 void main() {
-  runApp(new MyApp());
+  runApp(new MaterialApp(title: 'laiwan', home: new ScaffoldRoute()));
 }
 
-class MyApp extends StatelessWidget {
+/*
+AppBar({
+  Key key,
+  this.leading, //导航栏最左侧Widget，常见为抽屉菜单按钮或返回按钮。
+  this.automaticallyImplyLeading = true, //如果leading为null，是否自动实现默认的leading按钮
+  this.title,// 页面标题
+  this.actions, // 导航栏右侧菜单
+  this.bottom, // 导航栏底部菜单，通常为Tab按钮组
+  this.elevation = 4.0, // 导航栏阴影
+  this.centerTitle, //标题是否居中 
+  this.backgroundColor,
+  ...   //其它属性见源码注释
+})
+*/
+
+class ScaffoldRoute extends StatefulWidget {
+  @override
+  _ScaffoldRouteState createState() => _ScaffoldRouteState();
+}
+
+class _ScaffoldRouteState extends State<ScaffoldRoute> {
+  int _selectedIndex = 1;
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Welcome to Flutter',
-        home: Scaffold(
-            appBar: AppBar(
-              title: Text('Welcome to Flutter'),
-            ),
-            body: Container(
-              height: 120.0,
-              width: 120.0,
-              color: Colors.blue[50],
-              child: Align(
-                  // widthFactor 代表child里widget所占用的空间的宽度的倍数.heightFactor一样
-                  // 如果WidthFactor和父级的width同时存在.则父级的优先级更高
-                  // widthFactor: 3,
-                  // heightFactor: 3,
-                  // alignment: Alignment.topRight,
-                  // 实际偏移 = (Alignment.x*childWidth/2+childWidth/2, Alignment.y*childHeight/2+childHeight/2)
-                  alignment: FractionalOffset(0.5, 0.5),
-                  // 实际偏移 = (FractionalOffse.x * childWidth, FractionalOffse.y * childHeight)
-                  // childWidth = 父元素的 width .如果没有.默认为满屏
-                  child: FlutterLogo(
-                    size: 60,
-                  )),
-            )));
+    return Scaffold(
+      appBar: AppBar(
+        //导航栏
+        title: Text("App Name"),
+        actions: <Widget>[
+          //导航栏右侧菜单
+          IconButton(icon: Icon(Icons.share), onPressed: () {}),
+        ],
+      ),
+      drawer: Text('我的妈呀'), //抽屉
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        shape: CircularNotchedRectangle(), // 底部导航栏打一个圆形的洞
+        child: Row(
+          children: [
+            IconButton(icon: Icon(Icons.home)),
+            SizedBox(), //中间位置空出
+            IconButton(icon: Icon(Icons.business)),
+          ],
+          mainAxisAlignment: MainAxisAlignment.spaceAround, //均分底部导航栏横向空间
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+          //悬浮按钮
+          child: Icon(Icons.add),
+          onPressed: _onAdd),
+    );
   }
+
+  void _onItemTapped(int index) {
+    print(index);
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  void _onAdd() {}
 }
