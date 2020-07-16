@@ -537,36 +537,26 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Welcome to Flutter',
         home: Scaffold(
-          appBar: AppBar(
-            title: Text('Welcome to Flutter'),
-          ),
-          body: Wrap(
-            spacing: 11.0, // 主轴(水平)方向间距
-            runSpacing: 4.0, // 纵轴（垂直）方向间距
-            alignment: WrapAlignment.center, //沿主轴方向居中
-            children: <Widget>[
-              new Chip(
-                avatar: new CircleAvatar(
-                    backgroundColor: Colors.blue, child: Text('A')),
-                label: new Text('Hamilton'),
-              ),
-              new Chip(
-                avatar: new CircleAvatar(
-                    backgroundColor: Colors.blue, child: Text('M')),
-                label: new Text('Lafayette'),
-              ),
-              new Chip(
-                avatar: new CircleAvatar(
-                    backgroundColor: Colors.blue, child: Text('H')),
-                label: new Text('Mulligan'),
-              ),
-              new Chip(
-                avatar: new CircleAvatar(
-                    backgroundColor: Colors.blue, child: Text('J')),
-                label: new Text('Laurens'),
-              ),
-            ],
-          ),
-        ));
+            appBar: AppBar(
+              title: Text('Welcome to Flutter'),
+            ),
+            body: Container(
+              height: 120.0,
+              width: 120.0,
+              color: Colors.blue[50],
+              child: Align(
+                  // widthFactor 代表child里widget所占用的空间的宽度的倍数.heightFactor一样
+                  // 如果WidthFactor和父级的width同时存在.则父级的优先级更高
+                  // widthFactor: 3,
+                  // heightFactor: 3,
+                  // alignment: Alignment.topRight,
+                  // 实际偏移 = (Alignment.x*childWidth/2+childWidth/2, Alignment.y*childHeight/2+childHeight/2)
+                  alignment: FractionalOffset(0.5, 0.5),
+                  // 实际偏移 = (FractionalOffse.x * childWidth, FractionalOffse.y * childHeight)
+                  // childWidth = 父元素的 width .如果没有.默认为满屏
+                  child: FlutterLogo(
+                    size: 60,
+                  )),
+            )));
   }
 }
