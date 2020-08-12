@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
+class LaiWan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget titleSection = Container(
