@@ -9,7 +9,8 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
         title: 'Flutter Demo',
         home: Scaffold(
-          appBar: AppBar(backgroundColor: Colors.pink, title: Text('来玩')),
+          appBar: AppBar(backgroundColor: Colors.pink, title: Text('来玩管理平台')),
+          body: new LaiWan(),
         ));
   }
 }

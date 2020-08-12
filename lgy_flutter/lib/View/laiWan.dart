@@ -1,20 +1,40 @@
 import 'package:flutter/material.dart';
 
-class LaiWan extends StatelessWidget {
+class LaiWan extends StatefulWidget {
+  _LaiWanState createState() => new _LaiWanState();
+}
+
+class _LaiWanState extends State {
+  String username;
+  String password;
+
+  void _checkUsername(value) {
+    print('wowow');
+    print(value);
+  }
+
+  void _checkPassword(value) {
+    print(value);
+  }
+
+  void _checkTextInput() {
+    print('我将要开始检测textInput');
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget titleSection = Container(
+      color: Colors.blue,
       padding: const EdgeInsets.all(36),
       margin: const EdgeInsets.only(bottom: 36),
       child: Row(
         children: [
           Expanded(
-            /*1*/
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                /*2*/
                 Container(
+                  color: Colors.green,
                   child: Text(
                     '欢迎登陆来玩',
                     style: TextStyle(
@@ -26,7 +46,6 @@ class LaiWan extends StatelessWidget {
               ],
             ),
           ),
-          /*3*/
           Container(
               child: Image.asset(
             'images/img_password.png',
@@ -37,43 +56,38 @@ class LaiWan extends StatelessWidget {
       ),
     );
 
-    Color color = Theme.of(context).primaryColor;
-
-    Widget inputSection = Container(
+    Widget userNameSection = Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       margin: const EdgeInsets.only(bottom: 8),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-              margin: const EdgeInsets.only(right: 10),
-              width: 70,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text('中国大陆'),
-                  TextField(
-                    keyboardType: TextInputType.number,
-                  ),
-                ],
-              )),
-          Expanded(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('请输入手机号'),
-              TextField(
-                autofocus: true,
-                keyboardType: TextInputType.number,
-              ),
-            ],
-          ))
+          Text('请输入用户名'),
+          TextField(
+              autofocus: true,
+              keyboardType: TextInputType.number,
+              onChanged: (value) => _checkUsername(value)),
         ],
       ),
     );
 
-    Widget buttonSection = Container(
-      padding: const EdgeInsets.all(32),
+    Widget passwordSection = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.only(bottom: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('请输入密码'),
+          TextField(
+              autofocus: true,
+              keyboardType: TextInputType.number,
+              onChanged: (value) => _checkPassword(value)),
+        ],
+      ),
+    );
+
+    Widget buttonSection = GestureDetector(
+      onTap: _checkTextInput,
       child: Image.asset(
         'images/btn_sign_in.png',
         width: 322,
@@ -81,24 +95,17 @@ class LaiWan extends StatelessWidget {
       ),
     );
 
-    return MaterialApp(
-      title: 'Flutter layout demo',
-      home: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.pink,
-            title: Text('LaiWan LogIn'),
-          ),
-          body: Container(
-            width: 600,
-            height: 1000,
-            child: Column(
-              children: [
-                titleSection,
-                inputSection,
-                buttonSection,
-              ],
-            ),
-          )),
+    return Container(
+      width: 600,
+      height: 1000,
+      child: Column(
+        children: [
+          titleSection,
+          userNameSection,
+          passwordSection,
+          buttonSection,
+        ],
+      ),
     );
   }
 }
