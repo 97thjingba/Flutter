@@ -1,30 +1,50 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import './model/logInModel.dart';
+import '../util/SimpleStorage.dart';
+import '../constant/StorageKey.dart';
 
 class LaiWan extends StatefulWidget {
   _LaiWanState createState() => new _LaiWanState();
 }
 
 class _LaiWanState extends State {
-  String username;
-  String password;
+  String _username;
+  String _password;
 
   void _checkUsername(value) {
-    print('wowow');
-    print(value);
+    _username = value;
   }
 
   void _checkPassword(value) {
-    print(value);
+    _password = value;
+  }
+
+  void _login() async {
+    try {
+      var result = await LoginModel.login(_username, _password);
+      Map resultMap = json.decode(result);
+      // 获取accessToken
+      var accessToken = resultMap['result']['access_token'];
+      // 存入本地缓存
+      Storage.saveString(StorageKey.accessToken, accessToken);
+    } catch (error) {
+      print(error);
+    }
   }
 
   void _checkTextInput() {
-    print('我将要开始检测textInput');
+    if (_username.isEmpty || _password.isEmpty) {
+      print('有空');
+      return;
+    }
+    _login();
   }
 
   @override
   Widget build(BuildContext context) {
     Widget titleSection = Container(
-      color: Colors.blue,
       padding: const EdgeInsets.all(36),
       margin: const EdgeInsets.only(bottom: 36),
       child: Row(
@@ -34,7 +54,6 @@ class _LaiWanState extends State {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  color: Colors.green,
                   child: Text(
                     '欢迎登陆来玩',
                     style: TextStyle(
@@ -79,8 +98,8 @@ class _LaiWanState extends State {
         children: [
           Text('请输入密码'),
           TextField(
+              obscureText: true,
               autofocus: true,
-              keyboardType: TextInputType.number,
               onChanged: (value) => _checkPassword(value)),
         ],
       ),

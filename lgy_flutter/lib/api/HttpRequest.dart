@@ -15,12 +15,24 @@ future是Future<T>类的对象，其表示一个T类型的异步操作结果。�
 不同的是当你向 Iterable 获取下一个事件时它会立即给你，但是 Stream 则不会立即给你而是在它准备好时告诉你。
 */
 
-import 'dart:convert';
-import 'dart:io';
 import 'package:dio/dio.dart';
 
 class HttpRequest {
-  static getRequest(url) async {
+  static Future getAccessToken(url, data) async {
+    try {
+      print(url);
+      print(data);
+      Response response = await Dio().post(
+        url,
+        data: data,
+      );
+      return response.toString();
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  static Future getRequest(url) async {
     try {
       Response response = await Dio().get(url);
       return response;
@@ -29,7 +41,7 @@ class HttpRequest {
     }
   }
 
-  static postRequest(url, data, accessToken) async {
+  static Future postRequest(url, data, accessToken) async {
     try {
       Response response = await Dio().post(url,
           data: data,
@@ -40,7 +52,7 @@ class HttpRequest {
     }
   }
 
-  static putRequest(url, data, accessToken) async {
+  static Future putRequest(url, data, accessToken) async {
     try {
       Response response = await Dio().post(url,
           data: data,
@@ -51,7 +63,7 @@ class HttpRequest {
     }
   }
 
-  static deleteRequest(url) async {
+  static Future deleteRequest(url) async {
     // 待封装
     try {
       Response response = await Dio().delete(url);
@@ -61,7 +73,7 @@ class HttpRequest {
     }
   }
 
-  static patchRequest(url) async {
+  static Future patchRequest(url) async {
     // 待封装
     try {
       Response response = await Dio().get(url);
