@@ -26,9 +26,12 @@ class _LaiWanState extends State {
       var result = await LoginModel.login(_username, _password);
       Map resultMap = json.decode(result);
       // 获取accessToken
+      // 这里拿数据需要一个专门处理拿数据的model
       var accessToken = resultMap['result']['access_token'];
       // 存入本地缓存
       Storage.saveString(StorageKey.accessToken, accessToken);
+      // 跳转到写好的路由
+      Navigator.pushNamed(context, "report");
     } catch (error) {
       print(error);
     }
