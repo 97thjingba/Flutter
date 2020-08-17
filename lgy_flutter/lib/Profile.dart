@@ -4,11 +4,13 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("管理员页面"),
-      ),
-      body: Center(
-        child: Text("This is new route"),
+      body: Container(
+        decoration: new BoxDecoration(
+          image: new DecorationImage(
+            image: new AssetImage("images/profile/background.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
     );
   }

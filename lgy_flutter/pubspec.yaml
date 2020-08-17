@@ -40,5 +40,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - images/btn_sign_in.png
-    - images/img_password.png
+    - images/login/btn_sign_in.png
+    - images/login/img_password.png
+    - images/profile/background.png
+

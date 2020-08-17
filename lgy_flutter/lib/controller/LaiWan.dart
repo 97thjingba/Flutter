@@ -88,7 +88,7 @@ class _LaiWanState extends State {
           ),
           Container(
               child: Image.asset(
-            'images/img_password.png',
+            'images/login/img_password.png',
             width: 60,
             height: 57,
           ))
@@ -131,7 +131,7 @@ class _LaiWanState extends State {
         child: Container(
           margin: const EdgeInsets.only(top: 44),
           child: Image.asset(
-            'images/btn_sign_in.png',
+            'images/login/btn_sign_in.png',
             width: 456,
             height: 57,
           ),
