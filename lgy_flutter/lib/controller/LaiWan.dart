@@ -1,9 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import './model/logInModel.dart';
-import '../util/SimpleStorage.dart';
+import '../util/feature/SimpleStorage.dart';
 import '../constant/StorageKey.dart';
+import '../util/viewWidget/Toast.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class LaiWan extends StatefulWidget {
   _LaiWanState createState() => new _LaiWanState();
@@ -12,6 +13,7 @@ class LaiWan extends StatefulWidget {
 class _LaiWanState extends State {
   String _username;
   String _password;
+  bool _isLoading = false;
 
   void _checkUsername(value) {
     _username = value;
@@ -21,19 +23,35 @@ class _LaiWanState extends State {
     _password = value;
   }
 
+  void _showToast(msg) {
+    Toast.showToast(msg);
+  }
+
   void _login() async {
     try {
+      setState(() {
+        _isLoading = true;
+      });
       var result = await LoginModel.login(_username, _password);
       Map resultMap = json.decode(result);
+      if (resultMap["ok"] == false) {
+        _showToast("登陆失败，请验证账号密码是否正确");
+        return;
+      }
       // 获取accessToken
       // 这里拿数据需要一个专门处理拿数据的model
       var accessToken = resultMap['result']['access_token'];
       // 存入本地缓存
-      Storage.saveString(StorageKey.accessToken, accessToken);
+      await Storage.saveString(StorageKey.accessToken, accessToken);
       // 跳转到写好的路由
-      Navigator.pushNamed(context, "report");
+      Navigator.pushNamed(context, "profile");
     } catch (error) {
+      _showToast("$error");
       print(error);
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
@@ -58,7 +76,7 @@ class _LaiWanState extends State {
               children: [
                 Container(
                   child: Text(
-                    '欢迎登陆来玩',
+                    '欢迎登陆来玩管理界面',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 25.0,
@@ -109,25 +127,34 @@ class _LaiWanState extends State {
     );
 
     Widget buttonSection = GestureDetector(
-      onTap: _checkTextInput,
-      child: Image.asset(
-        'images/btn_sign_in.png',
-        width: 322,
-        height: 57,
-      ),
-    );
+        onTap: _checkTextInput,
+        child: Container(
+          margin: const EdgeInsets.only(top: 44),
+          child: Image.asset(
+            'images/btn_sign_in.png',
+            width: 456,
+            height: 57,
+          ),
+        ));
 
-    return Container(
-      width: 600,
-      height: 1000,
-      child: Column(
-        children: [
-          titleSection,
-          userNameSection,
-          passwordSection,
-          buttonSection,
-        ],
-      ),
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Log In"),
+        ),
+        body: ModalProgressHUD(
+          child: Container(
+            width: 600,
+            height: 1000,
+            child: Column(
+              children: [
+                titleSection,
+                userNameSection,
+                passwordSection,
+                buttonSection,
+              ],
+            ),
+          ),
+          inAsyncCall: _isLoading,
+        ));
   }
 }

@@ -1,12 +1,12 @@
 import '../../api/HttpRequest.dart';
-import '../../util/Server.dart';
+import '../../util/feature/Server.dart';
 
 class LoginModel {
   static login(username, password) {
     var url = '${Server.apiDomain()}/staff/authenticate';
     var body = {
-      "username": username,
-      "password": password,
+      "username": "peking",
+      "password": "b09961e7",
     };
     return HttpRequest.getAccessToken(url, body);
   }

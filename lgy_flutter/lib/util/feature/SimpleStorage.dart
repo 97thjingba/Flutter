@@ -8,6 +8,6 @@ class Storage {
 
   static getString(key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.getString(key);
+    return prefs.getString(key);
   }
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Report extends StatelessWidget {
+class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("New route"),
+        title: Text("管理员页面"),
       ),
       body: Center(
         child: Text("This is new route"),
