@@ -43,4 +43,5 @@ flutter:
     - images/login/btn_sign_in.png
     - images/login/img_password.png
     - images/profile/background.png
+    - images/profile/avatar.jpeg
 

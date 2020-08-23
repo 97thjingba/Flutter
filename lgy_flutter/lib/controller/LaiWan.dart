@@ -5,6 +5,7 @@ import '../util/feature/SimpleStorage.dart';
 import '../constant/StorageKey.dart';
 import '../util/viewWidget/Toast.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import '../util/feature/SizeConfig.dart';
 
 class LaiWan extends StatefulWidget {
   _LaiWanState createState() => new _LaiWanState();
@@ -65,6 +66,8 @@ class _LaiWanState extends State {
 
   @override
   Widget build(BuildContext context) {
+    // 一定要在第一次build context的时候初始化
+    SizeConfig().init(context);
     Widget titleSection = Container(
       padding: const EdgeInsets.all(36),
       margin: const EdgeInsets.only(bottom: 36),
