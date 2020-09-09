@@ -4,6 +4,8 @@ import './util/feature/SizeConfig.dart';
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // 初始化
+    SizeConfig().init(context);
     return Scaffold(
       body: ConstrainedBox(
         // 确保constrainedbox 确保stack占满屏幕，
@@ -12,6 +14,7 @@ class Profile extends StatelessWidget {
           // 如果没有写定位的话. child就在居中显示
           alignment: Alignment.center,
           children: [
+            // 渲染层级和react-native一样. 约在下面的会覆盖掉上层的东西
             backgroundSection,
             userInfo,
             avatar,
@@ -20,52 +23,96 @@ class Profile extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget backgroundSection = Container(
+Widget avatar = Positioned(
+  top: SizeConfig.bv * 20,
+  left: SizeConfig.bh * 10,
+  child: CircleAvatar(
+    // 图片大小
+    radius: 40,
+    backgroundImage: AssetImage('images/profile/avatar.jpeg'),
+  ),
+);
+
+Widget backgroundSection = Container(
+  decoration: BoxDecoration(
+    image: DecorationImage(
+      image: AssetImage('images/profile/background.png'),
+      fit: BoxFit.cover,
+    ),
+  ),
+);
+
+Widget userInfo = Positioned(
+  top: SizeConfig.bv * 23,
+  child: Container(
+    padding: EdgeInsets.only(left: SizeConfig.bh * 10, top: SizeConfig.bv * 8),
+    width: SizeConfig.screenWidth,
+    height: SizeConfig.screenHeight,
     decoration: BoxDecoration(
-      image: DecorationImage(
-        image: AssetImage('images/profile/background.png'),
-        fit: BoxFit.cover,
-      ),
-    ),
-  );
-
-  Widget userInfo = Positioned(
-    top: SizeConfig.bv * 23,
-    child: Container(
-      padding:
-          EdgeInsets.only(left: SizeConfig.bh * 10, top: SizeConfig.bv * 8),
-      width: SizeConfig.screenWidth,
-      height: SizeConfig.bv * 30,
-      decoration: BoxDecoration(
-        color: Colors.black12,
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 5,
+          blurRadius: 3,
+          offset: Offset(0, 1), // changes position of shadow
         ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Peking',
-            style: TextStyle(
-              color: Colors.black87,
-              fontSize: 17.0,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ],
+      ],
+      color: Colors.white,
+      borderRadius: BorderRadius.all(
+        Radius.circular(10),
       ),
     ),
-  );
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        userName,
+        tagsContainer,
+      ],
+    ),
+  ),
+);
 
-  Widget avatar = Positioned(
-    top: SizeConfig.bv * 20,
-    left: SizeConfig.bh * 10,
-    child: CircleAvatar(
-      // 图片大小
-      radius: 40,
-      backgroundImage: AssetImage('images/profile/avatar.jpeg'),
+Widget userName = Text(
+  'Peking',
+  style: TextStyle(
+    color: Colors.black87,
+    fontSize: 17.0,
+    fontWeight: FontWeight.w600,
+  ),
+);
+
+Widget tagsContainer = Container(
+  margin: EdgeInsets.only(top: 5),
+  child: Wrap(
+    spacing: 12.0, // 主轴(水平)方向间距
+    runSpacing: 2.0, // 纵轴（垂直）方向间距
+    alignment: WrapAlignment.start, //沿主轴方向居中
+    children: [
+      tag('95后'),
+      tag('天蝎座'),
+      tag('四川 成都'),
+    ],
+  ),
+);
+
+Widget tag(String title) {
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: SizeConfig.bh * 2),
+    decoration: BoxDecoration(
+      color: Colors.black12,
+      borderRadius: BorderRadius.all(
+        Radius.circular(20),
+      ),
+    ),
+    child: Text(
+      title,
+      style: TextStyle(
+        color: Colors.black38,
+        fontSize: 11,
+        fontWeight: FontWeight.bold,
+      ),
     ),
   );
 }
