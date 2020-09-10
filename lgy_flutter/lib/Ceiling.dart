@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:lgy_flutter/util/feature/SizeConfig.dart';
+import './Profile.dart';
 
 class Ceiling extends StatefulWidget {
   @override
@@ -10,12 +11,13 @@ class Ceiling extends StatefulWidget {
 class _CeilingPage extends State<Ceiling> with SingleTickerProviderStateMixin {
   ScrollController _scrollViewController;
   TabController _tabController;
+  List tabs = ['图片', '点赞'];
 
   @override
   void initState() {
     super.initState();
     // _scrollViewController = ScrollController(initialScrollOffset: 0.0);
-    _tabController = TabController(vsync: this, length: 1);
+    _tabController = TabController(vsync: this, length: tabs.length);
   }
 
   @override
@@ -48,25 +50,53 @@ class _CeilingPage extends State<Ceiling> with SingleTickerProviderStateMixin {
                 // appBar 展开时候的高度
                 expandedHeight: SizeConfig.bv * 50,
                 flexibleSpace: FlexibleSpaceBar(
-                    // CollapseMode.none 背景不随着滚动
-                    // CollapseMode.parallax 背景滚动具有视差效果
-                    // CollapseMode.pin 背景随着滚动，并且手指松开的时候根据松开位置进行展开收缩 AppBar
-                    collapseMode: CollapseMode.parallax,
-                    background: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('images/profile/background.png'),
-                          fit: BoxFit.cover,
-                        ),
+                  // CollapseMode.none 背景不随着滚动
+                  // CollapseMode.parallax 背景滚动具有视差效果
+                  // CollapseMode.pin 背景随着滚动，并且手指松开的时候根据松开位置进行展开收缩 AppBar
+                  collapseMode: CollapseMode.parallax,
+                  background: Profile(),
+                ),
+                bottom: TabBar(
+                  // 下划线的颜色
+                  indicatorColor: Colors.brown,
+                  // 下划线的高度
+                  indicatorWeight: 2.0,
+                  // 下划线的size.根据lavel大小显示
+                  indicatorSize: TabBarIndicatorSize.label,
+                  // 选中的边框
+                  // indicator: BoxDecoration(
+                  //     border: Border.all(
+                  //   width: 2,
+                  // )),
+                  controller: _tabController,
+                  tabs: [
+                    Tab(
+                      icon: Icon(
+                        Icons.favorite,
+                        color: Colors.red,
+                        size: 24.0,
                       ),
-                    )),
-                bottom: TabBar(controller: _tabController, tabs: [
-                  Tab(text: "aaa"),
-                ]),
+                    ),
+                    Tab(
+                      icon: Icon(
+                        Icons.access_alarm_outlined,
+                        color: Colors.green,
+                        size: 24.0,
+                      ),
+                    )
+                  ],
+                ),
               )
             ];
           },
-          body: Text('22'),
+          body: TabBarView(
+            controller: _tabController,
+            children: tabs.map((item) {
+              return Text(
+                item,
+              );
+            }).toList(),
+          ),
         ),
       ),
     );

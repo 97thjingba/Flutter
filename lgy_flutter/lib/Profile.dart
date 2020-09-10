@@ -15,9 +15,9 @@ class Profile extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             // 渲染层级和react-native一样. 约在下面的会覆盖掉上层的东西
-            backgroundSection,
-            userInfo,
-            avatar,
+            backgroundSection(),
+            userInfo(),
+            avatar(),
           ],
         ),
       ),
@@ -25,77 +25,88 @@ class Profile extends StatelessWidget {
   }
 }
 
-Widget avatar = Positioned(
-  top: SizeConfig.bv * 20,
-  left: SizeConfig.bh * 10,
-  child: CircleAvatar(
-    // 图片大小
-    radius: 40,
-    backgroundImage: AssetImage('images/profile/avatar.jpeg'),
-  ),
-);
-
-Widget backgroundSection = Container(
-  decoration: BoxDecoration(
-    image: DecorationImage(
-      image: AssetImage('images/profile/background.png'),
-      fit: BoxFit.cover,
+Widget avatar() {
+  return Positioned(
+    top: SizeConfig.bv * 10,
+    left: SizeConfig.bh * 5,
+    child: CircleAvatar(
+      // 图片大小
+      radius: 40,
+      backgroundImage: AssetImage('images/profile/avatar.jpeg'),
     ),
-  ),
-);
+  );
+}
 
-Widget userInfo = Positioned(
-  top: SizeConfig.bv * 23,
-  child: Container(
-    padding: EdgeInsets.only(left: SizeConfig.bh * 10, top: SizeConfig.bv * 8),
-    width: SizeConfig.screenWidth,
-    height: SizeConfig.screenHeight,
+Widget backgroundSection() {
+  return Container(
     decoration: BoxDecoration(
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.5),
-          spreadRadius: 5,
-          blurRadius: 3,
-          offset: Offset(0, 1), // changes position of shadow
-        ),
-      ],
-      color: Colors.white,
-      borderRadius: BorderRadius.all(
-        Radius.circular(10),
+      image: DecorationImage(
+        image: AssetImage('images/profile/background.png'),
+        fit: BoxFit.cover,
       ),
     ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  );
+}
+
+Widget userInfo() {
+  return Positioned(
+    top: SizeConfig.bv * 14,
+    child: Container(
+      padding:
+          EdgeInsets.only(left: SizeConfig.bh * 10, top: SizeConfig.bv * 8),
+      width: SizeConfig.screenWidth,
+      height: SizeConfig.screenHeight,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 3,
+            offset: Offset(0, 1), // changes position of shadow
+          ),
+        ],
+        color: Colors.white,
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          userName(),
+          tagsContainer(),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget userName() {
+  return Text(
+    'Peking',
+    style: TextStyle(
+      color: Colors.black87,
+      fontSize: 17.0,
+      fontWeight: FontWeight.w600,
+    ),
+  );
+}
+
+Widget tagsContainer() {
+  return Container(
+    margin: EdgeInsets.only(top: 5),
+    child: Wrap(
+      spacing: 12.0, // 主轴(水平)方向间距
+      runSpacing: 2.0, // 纵轴（垂直）方向间距
+      alignment: WrapAlignment.start, //沿主轴方向居中
       children: [
-        userName,
-        tagsContainer,
+        tag('95后'),
+        tag('天蝎座'),
+        tag('四川 成都'),
       ],
     ),
-  ),
-);
-
-Widget userName = Text(
-  'Peking',
-  style: TextStyle(
-    color: Colors.black87,
-    fontSize: 17.0,
-    fontWeight: FontWeight.w600,
-  ),
-);
-
-Widget tagsContainer = Container(
-  margin: EdgeInsets.only(top: 5),
-  child: Wrap(
-    spacing: 12.0, // 主轴(水平)方向间距
-    runSpacing: 2.0, // 纵轴（垂直）方向间距
-    alignment: WrapAlignment.start, //沿主轴方向居中
-    children: [
-      tag('95后'),
-      tag('天蝎座'),
-      tag('四川 成都'),
-    ],
-  ),
-);
+  );
+}
 
 Widget tag(String title) {
   return Container(
