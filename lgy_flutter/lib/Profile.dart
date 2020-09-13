@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './util/feature/SizeConfig.dart';
+import './StaggeredGridView.dart';
 
 class Profile extends StatelessWidget {
   @override
@@ -52,8 +53,10 @@ Widget userInfo() {
   return Positioned(
     top: SizeConfig.bv * 14,
     child: Container(
-      padding:
-          EdgeInsets.only(left: SizeConfig.bh * 10, top: SizeConfig.bv * 8),
+      padding: EdgeInsets.only(
+          left: SizeConfig.bh * 10,
+          top: SizeConfig.bv * 8,
+          right: SizeConfig.bh * 10),
       width: SizeConfig.screenWidth,
       height: SizeConfig.screenHeight,
       decoration: BoxDecoration(

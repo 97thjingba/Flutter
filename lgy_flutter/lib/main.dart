@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     // 初始化手机屏幕的大小
     return new MaterialApp(
         title: 'Flutter Demo',
-        initialRoute: "ceiling",
+        initialRoute: 'ceiling',
         routes: {
           "logIn": (context) => LaiWan(),
           "profile": (context) => Profile(),

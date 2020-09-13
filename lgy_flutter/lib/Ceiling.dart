@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:lgy_flutter/StaggeredGridView.dart';
 import 'package:lgy_flutter/util/feature/SizeConfig.dart';
 import './Profile.dart';
 
@@ -37,8 +38,9 @@ class _CeilingPage extends State<Ceiling> with SingleTickerProviderStateMixin {
           elevation: 1.0,
           title: Text("首页"),
         ),
+        // 一个可以嵌套其他可滚动widget的widget
         body: NestedScrollView(
-          // controller: _scrollViewController,
+          controller: _scrollViewController,
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
@@ -79,8 +81,8 @@ class _CeilingPage extends State<Ceiling> with SingleTickerProviderStateMixin {
                     ),
                     Tab(
                       icon: Icon(
-                        Icons.access_alarm_outlined,
-                        color: Colors.green,
+                        Icons.widgets,
+                        color: Colors.blue,
                         size: 24.0,
                       ),
                     )
@@ -91,11 +93,10 @@ class _CeilingPage extends State<Ceiling> with SingleTickerProviderStateMixin {
           },
           body: TabBarView(
             controller: _tabController,
-            children: tabs.map((item) {
-              return Text(
-                item,
-              );
-            }).toList(),
+            children: [
+              Example01(),
+              Text('data'),
+            ],
           ),
         ),
       ),
