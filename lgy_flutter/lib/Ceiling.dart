@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:lgy_flutter/StaggeredGridView.dart';
 import 'package:lgy_flutter/util/feature/SizeConfig.dart';
@@ -10,14 +9,27 @@ class Ceiling extends StatefulWidget {
 }
 
 class _CeilingPage extends State<Ceiling> with SingleTickerProviderStateMixin {
-  ScrollController _scrollViewController;
+  ScrollController _scrollViewController = new ScrollController();
   TabController _tabController;
   List tabs = ['图片', '点赞'];
+
+  bool showStatusBar = false;
 
   @override
   void initState() {
     super.initState();
-    // _scrollViewController = ScrollController(initialScrollOffset: 0.0);
+    _scrollViewController.addListener(() {
+      final value = _scrollViewController.offset;
+      if (value == 0) {
+        setState(() {
+          showStatusBar = false;
+        });
+      } else {
+        setState(() {
+          showStatusBar = true;
+        });
+      }
+    });
     _tabController = TabController(vsync: this, length: tabs.length);
   }
 
@@ -34,10 +46,17 @@ class _CeilingPage extends State<Ceiling> with SingleTickerProviderStateMixin {
     return Theme(
       data: ThemeData(primaryColor: Colors.white),
       child: Scaffold(
-        appBar: AppBar(
-          elevation: 1.0,
-          title: Text("首页"),
-        ),
+        // scaffold 下的body内容直接显示appBar前面
+        extendBodyBehindAppBar: true,
+        appBar: showStatusBar
+            ? AppBar(
+                elevation: 1,
+                backgroundColor: Colors.white,
+
+                ///设置AppBar透明，必须设置为0
+                title: Text('首页'),
+              )
+            : null,
         // 一个可以嵌套其他可滚动widget的widget
         body: NestedScrollView(
           controller: _scrollViewController,

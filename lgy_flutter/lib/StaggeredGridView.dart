@@ -58,19 +58,18 @@ List<Widget> _tiles = const <Widget>[
 ];
 
 class Example01 extends StatelessWidget {
-  @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        body: new Padding(
-            padding: const EdgeInsets.only(top: 12.0),
-            child: new StaggeredGridView.count(
-              crossAxisCount: 4,
-              staggeredTiles: _staggeredTiles,
-              children: _tiles,
-              mainAxisSpacing: 4.0,
-              crossAxisSpacing: 4.0,
-              padding: const EdgeInsets.all(4.0),
-            )));
+    return new Padding(
+      padding: const EdgeInsets.only(top: 12.0),
+      child: new StaggeredGridView.count(
+        crossAxisCount: 4,
+        staggeredTiles: _staggeredTiles,
+        children: _tiles,
+        mainAxisSpacing: 4.0,
+        crossAxisSpacing: 4.0,
+        padding: const EdgeInsets.all(4.0),
+      ),
+    );
   }
 }
 

@@ -28,7 +28,7 @@ class Profile extends StatelessWidget {
 
 Widget avatar() {
   return Positioned(
-    top: SizeConfig.bv * 10,
+    top: SizeConfig.bv * 18,
     left: SizeConfig.bh * 5,
     child: CircleAvatar(
       // 图片大小
@@ -51,7 +51,7 @@ Widget backgroundSection() {
 
 Widget userInfo() {
   return Positioned(
-    top: SizeConfig.bv * 14,
+    top: SizeConfig.bv * 23,
     child: Container(
       padding: EdgeInsets.only(
           left: SizeConfig.bh * 10,
@@ -78,9 +78,19 @@ Widget userInfo() {
         children: [
           userName(),
           tagsContainer(),
+          userStatus(),
         ],
       ),
     ),
+  );
+}
+
+Widget userStatus() {
+  return Row(
+    children: [
+      Text('点赞'),
+      Text('相册'),
+    ],
   );
 }
 
