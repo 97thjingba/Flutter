@@ -1,9 +1,26 @@
 import 'package:flutter/material.dart';
 import './util/feature/SizeConfig.dart';
-import './StaggeredGridView.dart';
+
+List profileList = [
+  {
+    "title": '点赞',
+    "value": '32',
+  },
+  {
+    "title": '相册',
+    "value": '25',
+  },
+  {
+    "title": '评论',
+    "value": '67',
+  },
+  {
+    "title": '转发',
+    "value": '45',
+  },
+];
 
 class Profile extends StatelessWidget {
-  @override
   Widget build(BuildContext context) {
     // 初始化
     SizeConfig().init(context);
@@ -28,7 +45,7 @@ class Profile extends StatelessWidget {
 
 Widget avatar() {
   return Positioned(
-    top: SizeConfig.bv * 18,
+    top: SizeConfig.bv * 14,
     left: SizeConfig.bh * 5,
     child: CircleAvatar(
       // 图片大小
@@ -51,7 +68,7 @@ Widget backgroundSection() {
 
 Widget userInfo() {
   return Positioned(
-    top: SizeConfig.bv * 23,
+    top: SizeConfig.bv * 19,
     child: Container(
       padding: EdgeInsets.only(
           left: SizeConfig.bh * 10,
@@ -87,11 +104,28 @@ Widget userInfo() {
 
 Widget userStatus() {
   return Row(
-    children: [
-      Text('点赞'),
-      Text('相册'),
-    ],
-  );
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: profileList.map((item) {
+        return Container(
+          margin: EdgeInsets.only(right: 10),
+          child: Column(
+            children: [
+              Text(
+                item['value'],
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                item['title'],
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                ),
+              )
+            ],
+          ),
+        );
+      }).toList());
 }
 
 Widget userName() {
@@ -107,7 +141,7 @@ Widget userName() {
 
 Widget tagsContainer() {
   return Container(
-    margin: EdgeInsets.only(top: 5),
+    margin: EdgeInsets.only(top: 10, bottom: 20),
     child: Wrap(
       spacing: 12.0, // 主轴(水平)方向间距
       runSpacing: 2.0, // 纵轴（垂直）方向间距
