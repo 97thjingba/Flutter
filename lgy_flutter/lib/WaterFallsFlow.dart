@@ -30,34 +30,34 @@ List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
 ];
 
 List<Widget> _tiles = const <Widget>[
-  const _Example01Tile(Colors.green, Icons.widgets),
-  const _Example01Tile(Colors.lightBlue, Icons.wifi),
-  const _Example01Tile(Colors.amber, Icons.panorama_wide_angle),
-  const _Example01Tile(Colors.brown, Icons.map),
-  const _Example01Tile(Colors.deepOrange, Icons.send),
-  const _Example01Tile(Colors.indigo, Icons.airline_seat_flat),
-  const _Example01Tile(Colors.red, Icons.bluetooth),
-  const _Example01Tile(Colors.pink, Icons.battery_alert),
-  const _Example01Tile(Colors.purple, Icons.desktop_windows),
-  const _Example01Tile(Colors.blue, Icons.radio),
-  const _Example01Tile(Colors.indigo, Icons.airline_seat_flat),
-  const _Example01Tile(Colors.red, Icons.bluetooth),
-  const _Example01Tile(Colors.pink, Icons.battery_alert),
-  const _Example01Tile(Colors.purple, Icons.desktop_windows),
-  const _Example01Tile(Colors.blue, Icons.radio),
-  const _Example01Tile(Colors.indigo, Icons.airline_seat_flat),
-  const _Example01Tile(Colors.red, Icons.bluetooth),
-  const _Example01Tile(Colors.pink, Icons.battery_alert),
-  const _Example01Tile(Colors.purple, Icons.desktop_windows),
-  const _Example01Tile(Colors.blue, Icons.radio),
-  const _Example01Tile(Colors.indigo, Icons.airline_seat_flat),
-  const _Example01Tile(Colors.red, Icons.bluetooth),
-  const _Example01Tile(Colors.pink, Icons.battery_alert),
-  const _Example01Tile(Colors.purple, Icons.desktop_windows),
-  const _Example01Tile(Colors.blue, Icons.radio),
+  const _ImgItem(Colors.green, Icons.widgets),
+  const _ImgItem(Colors.lightBlue, Icons.wifi),
+  const _ImgItem(Colors.amber, Icons.panorama_wide_angle),
+  const _ImgItem(Colors.brown, Icons.map),
+  const _ImgItem(Colors.deepOrange, Icons.send),
+  const _ImgItem(Colors.indigo, Icons.airline_seat_flat),
+  const _ImgItem(Colors.red, Icons.bluetooth),
+  const _ImgItem(Colors.pink, Icons.battery_alert),
+  const _ImgItem(Colors.purple, Icons.desktop_windows),
+  const _ImgItem(Colors.blue, Icons.radio),
+  const _ImgItem(Colors.indigo, Icons.airline_seat_flat),
+  const _ImgItem(Colors.red, Icons.bluetooth),
+  const _ImgItem(Colors.pink, Icons.battery_alert),
+  const _ImgItem(Colors.purple, Icons.desktop_windows),
+  const _ImgItem(Colors.blue, Icons.radio),
+  const _ImgItem(Colors.indigo, Icons.airline_seat_flat),
+  const _ImgItem(Colors.red, Icons.bluetooth),
+  const _ImgItem(Colors.pink, Icons.battery_alert),
+  const _ImgItem(Colors.purple, Icons.desktop_windows),
+  const _ImgItem(Colors.blue, Icons.radio),
+  const _ImgItem(Colors.indigo, Icons.airline_seat_flat),
+  const _ImgItem(Colors.red, Icons.bluetooth),
+  const _ImgItem(Colors.pink, Icons.battery_alert),
+  const _ImgItem(Colors.purple, Icons.desktop_windows),
+  const _ImgItem(Colors.blue, Icons.radio),
 ];
 
-class Example01 extends StatelessWidget {
+class WaterFallsFlow extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Padding(
       padding: const EdgeInsets.only(top: 12.0),
@@ -73,8 +73,8 @@ class Example01 extends StatelessWidget {
   }
 }
 
-class _Example01Tile extends StatelessWidget {
-  const _Example01Tile(this.backgroundColor, this.iconData);
+class _ImgItem extends StatelessWidget {
+  const _ImgItem(this.backgroundColor, this.iconData);
 
   final Color backgroundColor;
   final IconData iconData;
