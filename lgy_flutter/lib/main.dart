@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'controller/LaiWan.dart';
 import './Profile.dart';
 import './Ceiling.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() => runApp(new MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  // 设置适配尺寸.根据设计稿中设备的屏幕尺寸.假设Iphone6的尺寸设计
+  ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: false);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
