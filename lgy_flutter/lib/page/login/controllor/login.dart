@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import './model/logInModel.dart';
-import '../util/feature/SimpleStorage.dart';
-import '../constant/StorageKey.dart';
-import '../util/viewWidget/Toast.dart';
+import '../model/logInModel.dart';
+import '../../../util/feature/SimpleStorage.dart';
+import '../../../constant//StorageKey.dart';
+import '../../../util/viewWidget/Toast.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LaiWan extends StatefulWidget {
-  _LaiWanState createState() => new _LaiWanState();
+class LogIn extends StatefulWidget {
+  _LogInState createState() => new _LogInState();
 }
 
-class _LaiWanState extends State {
+class _LogInState extends State {
   String _username;
   String _password;
   bool _isLoading = false;
@@ -45,7 +45,7 @@ class _LaiWanState extends State {
       // 存入本地缓存
       await Storage.saveString(StorageKey.accessToken, accessToken);
       // 跳转到写好的路由
-      Navigator.pushNamed(context, "profile");
+      Navigator.pushNamed(context, "home");
     } catch (error) {
       _showToast("$error");
       print(error);
@@ -81,7 +81,7 @@ class _LaiWanState extends State {
                     '欢迎登陆来玩管理界面',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 25.sp,
+                      fontSize: 40.sp,
                     ),
                   ),
                 ),
@@ -91,8 +91,8 @@ class _LaiWanState extends State {
           Container(
               child: Image.asset(
             'images/login/img_password.png',
-            width: 60.w,
-            height: 57.h,
+            width: 100.w,
+            height: 100.h,
           ))
         ],
       ),
@@ -131,11 +131,11 @@ class _LaiWanState extends State {
     Widget buttonSection = GestureDetector(
         onTap: _checkTextInput,
         child: Container(
-          margin: EdgeInsets.only(top: 44.h),
+          margin: EdgeInsets.only(top: 60.h),
           child: Image.asset(
             'images/login/btn_sign_in.png',
-            width: 456.w,
-            height: 57.h,
+            width: 500.w,
+            height: 80.h,
           ),
         ));
 
@@ -145,7 +145,7 @@ class _LaiWanState extends State {
         ),
         body: ModalProgressHUD(
           child: Container(
-            width: 600.w,
+            width: 1.wp,
             height: 1000.h,
             child: Column(
               children: [
