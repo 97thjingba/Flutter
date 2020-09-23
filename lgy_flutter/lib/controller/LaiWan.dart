@@ -5,7 +5,7 @@ import '../util/feature/SimpleStorage.dart';
 import '../constant/StorageKey.dart';
 import '../util/viewWidget/Toast.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import '../util/feature/SizeConfig.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LaiWan extends StatefulWidget {
   _LaiWanState createState() => new _LaiWanState();
@@ -67,10 +67,9 @@ class _LaiWanState extends State {
   @override
   Widget build(BuildContext context) {
     // 一定要在第一次build context的时候初始化
-    SizeConfig().init(context);
     Widget titleSection = Container(
-      padding: const EdgeInsets.all(36),
-      margin: const EdgeInsets.only(bottom: 36),
+      padding: EdgeInsets.all(36.w),
+      margin: EdgeInsets.only(bottom: 36.w),
       child: Row(
         children: [
           Expanded(
@@ -82,7 +81,7 @@ class _LaiWanState extends State {
                     '欢迎登陆来玩管理界面',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 25.0,
+                      fontSize: 25.sp,
                     ),
                   ),
                 ),
@@ -92,16 +91,16 @@ class _LaiWanState extends State {
           Container(
               child: Image.asset(
             'images/login/img_password.png',
-            width: 60,
-            height: 57,
+            width: 60.w,
+            height: 57.h,
           ))
         ],
       ),
     );
 
     Widget userNameSection = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      margin: const EdgeInsets.only(bottom: 8),
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      margin: EdgeInsets.only(bottom: 8.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -115,8 +114,8 @@ class _LaiWanState extends State {
     );
 
     Widget passwordSection = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      margin: const EdgeInsets.only(bottom: 8),
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      margin: EdgeInsets.only(bottom: 8.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -132,11 +131,11 @@ class _LaiWanState extends State {
     Widget buttonSection = GestureDetector(
         onTap: _checkTextInput,
         child: Container(
-          margin: const EdgeInsets.only(top: 44),
+          margin: EdgeInsets.only(top: 44.h),
           child: Image.asset(
             'images/login/btn_sign_in.png',
-            width: 456,
-            height: 57,
+            width: 456.w,
+            height: 57.h,
           ),
         ));
 
@@ -146,8 +145,8 @@ class _LaiWanState extends State {
         ),
         body: ModalProgressHUD(
           child: Container(
-            width: 600,
-            height: 1000,
+            width: 600.w,
+            height: 1000.h,
             child: Column(
               children: [
                 titleSection,

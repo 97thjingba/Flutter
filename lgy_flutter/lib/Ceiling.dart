@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lgy_flutter/WaterFallsFlow.dart';
-import 'package:lgy_flutter/util/feature/SizeConfig.dart';
 import './Profile.dart';
 import './ShortVideo.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Ceiling extends StatefulWidget {
   @override
@@ -43,12 +43,11 @@ class _CeilingPage extends State<Ceiling> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Theme(
       data: ThemeData(primaryColor: Colors.white),
       child: Scaffold(
         // scaffold 下的body内容直接显示appBar前面
-        // extendBodyBehindAppBar: true,
+        extendBodyBehindAppBar: true,
         appBar: showStatusBar
             ? AppBar(
                 elevation: 1,
@@ -70,7 +69,7 @@ class _CeilingPage extends State<Ceiling> with SingleTickerProviderStateMixin {
                 // floating true的时候下滑appBar优先滑动展示,展示完成后才给滑动控件滑动
                 floating: true,
                 // appBar 展开时候的高度
-                expandedHeight: SizeConfig.bv * 50,
+                expandedHeight: 500.h,
                 flexibleSpace: FlexibleSpaceBar(
                   // CollapseMode.none 背景不随着滚动
                   // CollapseMode.parallax 背景滚动具有视差效果
@@ -82,7 +81,7 @@ class _CeilingPage extends State<Ceiling> with SingleTickerProviderStateMixin {
                   // 下划线的颜色
                   indicatorColor: Colors.brown,
                   // 下划线的高度
-                  indicatorWeight: 2.0,
+                  indicatorWeight: 2.h,
                   // 下划线的size.根据lavel大小显示
                   indicatorSize: TabBarIndicatorSize.label,
                   // 选中的边框
@@ -96,14 +95,14 @@ class _CeilingPage extends State<Ceiling> with SingleTickerProviderStateMixin {
                       icon: Icon(
                         Icons.favorite,
                         color: Colors.red,
-                        size: 24.0,
+                        size: 24,
                       ),
                     ),
                     Tab(
                       icon: Icon(
                         Icons.widgets,
                         color: Colors.blue,
-                        size: 24.0,
+                        size: 24,
                       ),
                     )
                   ],
