@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'controller/LaiWan.dart';
-import './Profile.dart';
-import './Ceiling.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lgy_flutter/page/home/controllor/home.dart';
+import './page/login/controllor/login.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,11 +16,10 @@ class MyApp extends StatelessWidget {
     // 初始化手机屏幕的大小
     return new MaterialApp(
         title: 'Flutter Demo',
-        initialRoute: 'ceiling',
+        initialRoute: 'logIn',
         routes: {
-          "logIn": (context) => LaiWan(),
-          "profile": (context) => Profile(),
-          "ceiling": (context) => Ceiling(),
+          "logIn": (context) => LogIn(),
+          "home": (context) => HomePage(),
         });
   }
 }

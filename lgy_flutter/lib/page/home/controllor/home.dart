@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:lgy_flutter/WaterFallsFlow.dart';
-import './Profile.dart';
-import './ShortVideo.dart';
+import '../WaterFallsFlow.dart';
+import '../Profile.dart';
+import '../ShortVideo.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Ceiling extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _CeilingPage createState() => _CeilingPage();
+  _HomePage createState() => _HomePage();
 }
 
-class _CeilingPage extends State<Ceiling> with SingleTickerProviderStateMixin {
+class _HomePage extends State<HomePage> with SingleTickerProviderStateMixin {
   ScrollController _scrollViewController = new ScrollController();
   TabController _tabController;
   List tabs = ['图片', '点赞'];
@@ -55,6 +55,7 @@ class _CeilingPage extends State<Ceiling> with SingleTickerProviderStateMixin {
 
                 ///设置AppBar透明，必须设置为0
                 title: Text('首页'),
+                leading: Text(''),
               )
             : null,
         // 一个可以嵌套其他可滚动widget的widget

@@ -1,5 +1,5 @@
-import '../../api/HttpRequest.dart';
-import '../../util/feature/Server.dart';
+import '../../../api/HttpRequest.dart';
+import '../../../util/feature/Server.dart';
 
 class LoginModel {
   static login(username, password) {
